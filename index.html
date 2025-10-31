@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>shilpabytes</title>
+    <title>Shilpa Bytes</title>
     <!-- Favicon: Using a reliable Unicode Emoji for universal browser compatibility -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎀</text></svg>">
     <!-- Load Tailwind CSS -->
@@ -31,6 +31,10 @@
         .project-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 15px -3px rgba(6, 182, 212, 0.2), 0 4px 6px -2px rgba(6, 182, 212, 0.1);
+        }
+        /* Custom class for project list items for better spacing */
+        .project-list-item {
+            padding-left: 0.5rem;
         }
     </style>
 </head>
@@ -129,12 +133,19 @@
                     <!-- Project 1: Contest Tracker -->
                     <div class="project-card bg-gray-800 p-6 rounded-xl shadow-2xl border border-gray-700">
                         <h3 class="text-3xl font-bold text-teal-400 mb-2">Contest Tracker</h3>
-                        <p class="text-sm font-semibold text-gray-500 mb-4">React, Node.js, Express, MongoDB, TailwindCSS</p>
+                        <!-- Tech Tags -->
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-teal-600/20 text-teal-400 text-xs font-medium rounded-full">React</span>
+                            <span class="px-3 py-1 bg-teal-600/20 text-teal-400 text-xs font-medium rounded-full">Node.js</span>
+                            <span class="px-3 py-1 bg-teal-600/20 text-teal-400 text-xs font-medium rounded-full">Express</span>
+                            <span class="px-3 py-1 bg-teal-600/20 text-teal-400 text-xs font-medium rounded-full">MongoDB</span>
+                            <span class="px-3 py-1 bg-teal-600/20 text-teal-400 text-xs font-medium rounded-full">TailwindCSS</span>
+                        </div>
                         <ul class="list-disc list-outside space-y-3 pl-5 text-gray-300">
-                            <li>Engineered a full-stack MERN application that tracks **100+ contests** from 3 major competitive programming platforms, resulting in **30% increased user engagement**.</li>
-                            <li>Developed **15+ RESTful API endpoints** with Express.js, optimizing data access efficiency by **40%** for seamless user experience.</li>
-                            <li>Optimized MongoDB database with indexing strategies, reducing query execution time by **65%** and API response times to **400ms**.</li>
-                            <li>Designed a fully **responsive UI** using TailwindCSS, reducing page load time by **45%** across various screen sizes.</li>
+                            <li class="project-list-item">Engineered a full-stack MERN application that tracks **100+ contests** from 3 major competitive programming platforms, resulting in **30% increased user engagement**.</li>
+                            <li class="project-list-item">Developed **15+ RESTful API endpoints** with Express.js, optimizing data access efficiency by **40%** for seamless user experience.</li>
+                            <li class="project-list-item">Optimized MongoDB database with indexing strategies, reducing query execution time by **65%** and API response times to **400ms**.</li>
+                            <li class="project-list-item">Designed a fully **responsive UI** using TailwindCSS, reducing page load time by **45%** across various screen sizes.</li>
                         </ul>
                         <div class="mt-4">
                             <a href="https://github.com/Shilpa805/CONTEST-TRACKER-APP" target="_blank" class="text-sm font-medium text-teal-400 hover:text-teal-300">View on GitHub →</a>
@@ -144,12 +155,20 @@
                     <!-- Project 2: Social Link -->
                     <div class="project-card bg-gray-800 p-6 rounded-xl shadow-2xl border border-gray-700">
                         <h3 class="text-3xl font-bold text-teal-400 mb-2">Social Link (Real-Time Chat)</h3>
-                        <p class="text-sm font-semibold text-gray-500 mb-4">React, Node.js, MongoDB, Express, Socket.io, Cloudinary</p>
+                        <!-- Tech Tags -->
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-teal-600/20 text-teal-400 text-xs font-medium rounded-full">React</span>
+                            <span class="px-3 py-1 bg-teal-600/20 text-teal-400 text-xs font-medium rounded-full">Node.js</span>
+                            <span class="px-3 py-1 bg-teal-600/20 text-teal-400 text-xs font-medium rounded-full">MongoDB</span>
+                            <span class="px-3 py-1 bg-teal-600/20 text-teal-400 text-xs font-medium rounded-full">Express</span>
+                            <span class="px-3 py-1 bg-teal-600/20 text-teal-400 text-xs font-medium rounded-full">Socket.io</span>
+                            <span class="px-3 py-1 bg-teal-600/20 text-teal-400 text-xs font-medium rounded-full">Cloudinary</span>
+                        </div>
                         <ul class="list-disc list-outside space-y-3 pl-5 text-gray-300">
-                            <li>Designed and implemented a full-stack real-time chat application using the MERN stack with a responsive UI built on React and Tailwind CSS.</li>
-                            <li>Implemented **Socket.io** for efficient, real-time communication, ensuring optimized cross-domain operations (CORS configuration).</li>
-                            <li>Secured APIs with **JWT authentication** using HTTP-only cookies.</li>
-                            <li>Integrated **Cloudinary** for image uploads and storage, enabling seamless media sharing.</li>
+                            <li class="project-list-item">Designed and implemented a full-stack real-time chat application using the MERN stack with a responsive UI built on React and Tailwind CSS.</li>
+                            <li class="project-list-item">Implemented **Socket.io** for efficient, real-time communication, ensuring optimized cross-domain operations (CORS configuration).</li>
+                            <li class="project-list-item">Secured APIs with **JWT authentication** using HTTP-only cookies.</li>
+                            <li class="project-list-item">Integrated **Cloudinary** for image uploads and storage, enabling seamless media sharing.</li>
                         </ul>
                         <div class="mt-4">
                             <a href="https://github.com/Shilpa805/SociaLink" target="_blank" class="text-sm font-medium text-teal-400 hover:text-teal-300">View on GitHub →</a>
