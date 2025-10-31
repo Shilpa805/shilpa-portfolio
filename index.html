@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>shilpabytes</title>
+    <title>Shilpa Bytes</title>
     <!-- Favicon: Using a reliable Unicode Emoji for universal browser compatibility -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎀</text></svg>">
     <!-- Load Tailwind CSS -->
@@ -15,60 +15,120 @@
         }
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #0d1117; /* Very dark background */
+            /* Replaced static color with a dark, vibrant gradient for the body */
+            background: linear-gradient(135deg, #0f0f1c 0%, #17102e 50%, #0f0f1c 100%);
+            background-size: 200% 200%;
+            animation: gradient-shift 15s ease infinite;
+            color: #d1d5db; /* Light gray text */
+        }
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        /* Navigation background must remain solid for readability */
+        #sidebar-nav {
+            background-color: #0f0f1c; /* Solid dark color */
         }
         .section-header {
             font-size: 2.25rem; /* text-4xl */
             font-weight: 700; /* font-bold */
-            color: #06b6d4; /* Tailwind cyan-500 accent color */
+            color: #5eead4; /* Tailwind emerald-400 accent color */
             margin-bottom: 2rem;
-            border-left: 4px solid #06b6d4;
+            border-left: 4px solid #5eead4;
             padding-left: 1rem;
         }
         .project-card {
             transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
         }
         .project-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 15px -3px rgba(6, 182, 212, 0.2), 0 4px 6px -2px rgba(6, 182, 212, 0.1);
+            /* Making the hover shadow match the accent color */
+            box-shadow: 0 10px 15px -3px rgba(94, 234, 212, 0.3), 0 4px 6px -2px rgba(94, 234, 212, 0.15);
         }
-        /* Custom class for project list items for better spacing */
-        .project-list-item {
-            padding-left: 0.5rem;
+        /* Style for the Pre-loader screen (Splash Screen) */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* Matching gradient for the dramatic splash screen */
+            background: linear-gradient(135deg, #0f0f1c 0%, #17102e 50%, #0f0f1c 100%);
+            background-size: 200% 200%;
+            animation: gradient-shift 15s ease infinite;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 1;
+            transition: opacity 0.5s ease-out;
+        }
+        .preloader-hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+        .loader-text {
+            color: #5eead4;
+            font-size: 3rem; /* Larger text for splash screen effect */
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(94, 234, 212, 0.5);
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        /* Style for Scroll Animation (hidden initially) */
+        .animate-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .animate-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
-<body class="bg-gray-900 text-gray-100">
+<body>
+
+    <!-- Pre-loader / Splash Screen -->
+    <div id="preloader" class="preloader-active">
+        <div class="loader-text">Welcome To My Portfolio</div>
+        <p class="text-xl text-gray-400 mt-4">Shilpa Bytes</p>
+    </div>
 
     <!-- Mobile Nav Toggle -->
-    <button id="mobile-menu-button" class="lg:hidden fixed top-4 right-4 z-50 p-3 bg-teal-600 rounded-full shadow-lg focus:outline-none">
+    <button id="mobile-menu-button" class="lg:hidden fixed top-4 right-4 z-50 p-3 bg-emerald-600 rounded-full shadow-lg focus:outline-none">
         <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
     </button>
 
     <!-- Navigation (Side for Desktop, Modal/Drawer for Mobile) -->
-    <!-- FIX: Removed lg:static so the nav remains fixed on desktop -->
-    <nav id="sidebar-nav" class="fixed inset-y-0 left-0 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out lg:w-64 bg-gray-800 shadow-xl z-40 p-6 lg:p-0">
+    <nav id="sidebar-nav" class="fixed inset-y-0 left-0 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out lg:w-64 shadow-xl z-40 p-6 lg:p-0">
         <div class="h-full flex flex-col justify-between">
             <div>
                 <h1 class="text-3xl font-extrabold text-white mb-2">Shilpa Kumari</h1>
-                <p class="text-teal-400 mb-8 text-lg font-medium">MERN Stack Developer</p>
+                <p class="text-emerald-400 mb-8 text-lg font-medium">MERN Stack Developer</p>
                 <div class="space-y-3">
-                    <a href="#hero" class="block text-gray-300 hover:text-teal-400 transition duration-150 py-1 border-l-2 border-transparent hover:border-teal-400 pl-3">Home</a>
-                    <a href="#skills" class="block text-gray-300 hover:text-teal-400 transition duration-150 py-1 border-l-2 border-transparent hover:border-teal-400 pl-3">Skills</a>
-                    <a href="#projects" class="block text-gray-300 hover:text-teal-400 transition duration-150 py-1 border-l-2 border-transparent hover:border-teal-400 pl-3">Projects</a>
-                    <a href="#achievements" class="block text-gray-300 hover:text-teal-400 transition duration-150 py-1 border-l-2 border-transparent hover:border-teal-400 pl-3">Achievements</a>
-                    <a href="#resume" class="block text-gray-300 hover:text-teal-400 transition duration-150 py-1 border-l-2 border-transparent hover:border-teal-400 pl-3">Resume</a>
-                    <a href="#contact" class="block text-gray-300 hover:text-teal-400 transition duration-150 py-1 border-l-2 border-transparent hover:border-teal-400 pl-3">Contact</a>
+                    <a href="#hero" class="block text-gray-300 hover:text-emerald-400 transition duration-150 py-1 border-l-2 border-transparent hover:border-emerald-400 pl-3">Home</a>
+                    <a href="#skills" class="block text-gray-300 hover:text-emerald-400 transition duration-150 py-1 border-l-2 border-transparent hover:border-emerald-400 pl-3">Skills</a>
+                    <a href="#projects" class="block text-gray-300 hover:text-emerald-400 transition duration-150 py-1 border-l-2 border-transparent hover:border-emerald-400 pl-3">Projects</a>
+                    <a href="#achievements" class="block text-gray-300 hover:text-emerald-400 transition duration-150 py-1 border-l-2 border-transparent hover:border-emerald-400 pl-3">Achievements</a>
+                    <a href="#resume" class="block text-gray-300 hover:text-emerald-400 transition duration-150 py-1 border-l-2 border-transparent hover:border-emerald-400 pl-3">Resume</a>
+                    <a href="#contact" class="block text-gray-300 hover:text-emerald-400 transition duration-150 py-1 border-l-2 border-transparent hover:border-emerald-400 pl-3">Contact</a>
                 </div>
                 <!-- Links moved here to be below navigation links -->
                 <div class="flex space-x-4 mt-8">
-                    <a href="https://www.linkedin.com/in/shilpa-kumari08/" target="_blank" class="text-gray-400 hover:text-teal-400 transition">
+                    <a href="https://www.linkedin.com/in/shilpa-kumari08/" target="_blank" class="text-gray-400 hover:text-emerald-400 transition">
                         <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM4 19h4v-7H4v7zM6 9a3 3 0 110-6 3 3 0 010 6z"/></svg>
                     </a>
-                    <a href="https://github.com/Shilpa805/" target="_blank" class="text-gray-400 hover:text-teal-400 transition">
+                    <a href="https://github.com/Shilpa805/" target="_blank" class="text-gray-400 hover:text-emerald-400 transition">
                         <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.463 2 11.97c0 4.414 2.868 8.16 6.839 9.48.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.37-1.34-3.37-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.068-.608.068-.608 1.007.07 1.532 1.03 1.532 1.03.89 1.527 2.341 1.085 2.91.83.091-.645.349-1.085.635-1.334-2.22-.253-4.555-1.116-4.555-4.938 0-1.09.39-1.984 1.029-2.682-.103-.253-.446-1.272.098-2.648 0 0 .84-.268 2.75 1.025A9.87 9.87 0 0112 5.506c.85.004 1.7.114 2.508.328 1.91-1.293 2.75-1.025 2.75-1.025.546 1.376.202 2.395.099 2.648.64.698 1.028 1.592 1.028 2.682 0 3.83-2.336 4.683-4.566 4.932.359.309.678.919.678 1.848 0 1.334-.012 2.415-.012 2.748 0 .267.18.577.688.484C19.13 20.13 22 16.386 22 11.97 22 6.463 17.523 2 12 2z"/></svg>
                     </a>
-                    <a href="mailto:shilpaak805@gmail.com" class="text-gray-400 hover:text-teal-400 transition">
+                    <a href="mailto:shilpaak805@gmail.com" class="text-gray-400 hover:text-emerald-400 transition">
                         <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2zm0 2v12h16V6H4zm0 2l8 5 8-5V6l-8 5-8-5v2z"/></svg>
                     </a>
                 </div>
@@ -80,19 +140,18 @@
     </nav>
 
     <!-- Main Content Area -->
-    <!-- FIX: Changed lg:pl-64 (padding) to lg:ml-64 (margin) to create space for the fixed nav -->
     <div class="content-area lg:ml-64 min-h-screen pt-4 lg:pt-0">
         <div class="container mx-auto px-4 py-12 max-w-4xl">
 
             <!-- Hero / Introduction Section -->
-            <section id="hero" class="py-20 lg:py-24">
-                <p class="text-xl font-medium text-teal-400 mb-2">Hello, I'm</p>
+            <section id="hero" class="py-20 lg:py-24 animate-scroll">
+                <p class="text-xl font-medium text-emerald-400 mb-2">Hello, I'm</p>
                 <h2 class="text-7xl lg:text-8xl font-black mb-4 leading-tight">Shilpa Kumari.</h2>
                 <h3 class="text-3xl lg:text-4xl font-light text-gray-400 mb-8">Building modern web applications with the MERN Stack.</h3>
                 <p class="text-lg text-gray-300 max-w-2xl">
                     A passionate Software Engineer specializing in <strong>full-stack development</strong>, focused on creating scalable, high-performance, and responsive web experiences. I leverage a strong foundation in <strong>Data Structures and Algorithms</strong> to drive efficient and optimized solutions.
                 </p>
-                <a href="#projects" class="mt-10 inline-block bg-teal-600 hover:bg-teal-700 text-white font-semibold py-3 px-8 rounded-full transition duration-300 shadow-xl">
+                <a href="#projects" class="mt-10 inline-block bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3 px-8 rounded-full transition duration-300 shadow-xl">
                     View My Work →
                 </a>
             </section>
@@ -100,14 +159,14 @@
             <!-- --- -->
 
             <!-- Skills Section -->
-            <section id="skills" class="py-16">
+            <section id="skills" class="py-16 animate-scroll">
                 <h2 class="section-header">Skills</h2>
                 <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
                     <!-- MERN Core -->
-                    <div class="p-4 bg-gray-800 rounded-lg text-center shadow-lg"><p class="text-teal-400 font-bold">React.js</p></div>
-                    <div class="p-4 bg-gray-800 rounded-lg text-center shadow-lg"><p class="text-teal-400 font-bold">Node.js</p></div>
-                    <div class="p-4 bg-gray-800 rounded-lg text-center shadow-lg"><p class="text-teal-400 font-bold">Express.js</p></div>
-                    <div class="p-4 bg-gray-800 rounded-lg text-center shadow-lg"><p class="text-teal-400 font-bold">MongoDB</p></div>
+                    <div class="p-4 bg-gray-800 rounded-lg text-center shadow-lg"><p class="text-emerald-400 font-bold">React.js</p></div>
+                    <div class="p-4 bg-gray-800 rounded-lg text-center shadow-lg"><p class="text-emerald-400 font-bold">Node.js</p></div>
+                    <div class="p-4 bg-gray-800 rounded-lg text-center shadow-lg"><p class="text-emerald-400 font-bold">Express.js</p></div>
+                    <div class="p-4 bg-gray-800 rounded-lg text-center shadow-lg"><p class="text-emerald-400 font-bold">MongoDB</p></div>
                     
                     <!-- Languages -->
                     <div class="p-4 bg-gray-800 rounded-lg text-center shadow-lg"><p class="text-gray-300">JavaScript (ES6+)</p></div>
@@ -126,52 +185,52 @@
             <!-- --- -->
 
             <!-- Projects Section -->
-            <section id="projects" class="py-16">
+            <section id="projects" class="py-16 animate-scroll">
                 <h2 class="section-header">Projects</h2>
                 <div class="space-y-12">
                     
                     <!-- Project 1: Contest Tracker -->
                     <div class="project-card bg-gray-800 p-6 rounded-xl shadow-2xl border border-gray-700">
-                        <h3 class="text-3xl font-bold text-teal-400 mb-2">Contest Tracker</h3>
+                        <h3 class="text-3xl font-bold text-emerald-400 mb-2">Contest Tracker</h3>
                         <!-- Tech Tags -->
                         <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-3 py-1 bg-teal-600/20 text-teal-400 text-xs font-medium rounded-full">React</span>
-                            <span class="px-3 py-1 bg-teal-600/20 text-teal-400 text-xs font-medium rounded-full">Node.js</span>
-                            <span class="px-3 py-1 bg-teal-600/20 text-teal-400 text-xs font-medium rounded-full">Express</span>
-                            <span class="px-3 py-1 bg-teal-600/20 text-teal-400 text-xs font-medium rounded-full">MongoDB</span>
-                            <span class="px-3 py-1 bg-teal-600/20 text-teal-400 text-xs font-medium rounded-full">TailwindCSS</span>
+                            <span class="px-3 py-1 bg-emerald-600/20 text-emerald-400 text-xs font-medium rounded-full">React</span>
+                            <span class="px-3 py-1 bg-emerald-600/20 text-emerald-400 text-xs font-medium rounded-full">Node.js</span>
+                            <span class="px-3 py-1 bg-emerald-600/20 text-emerald-400 text-xs font-medium rounded-full">Express</span>
+                            <span class="px-3 py-1 bg-emerald-600/20 text-emerald-400 text-xs font-medium rounded-full">MongoDB</span>
+                            <span class="px-3 py-1 bg-emerald-600/20 text-emerald-400 text-xs font-medium rounded-full">TailwindCSS</span>
                         </div>
-                        <ul class="list-disc list-outside space-y-3 pl-5 text-gray-300">
-                            <li class="project-list-item">Engineered a full-stack MERN application that tracks **100+ contests** from 3 major competitive programming platforms, resulting in **30% increased user engagement**.</li>
-                            <li class="project-list-item">Developed **15+ RESTful API endpoints** with Express.js, optimizing data access efficiency by **40%** for seamless user experience.</li>
-                            <li class="project-list-item">Optimized MongoDB database with indexing strategies, reducing query execution time by **65%** and API response times to **400ms**.</li>
-                            <li class="project-list-item">Designed a fully **responsive UI** using TailwindCSS, reducing page load time by **45%** across various screen sizes.</li>
+                        <ul class="list-disc list-outside space-y-4 pl-5 text-gray-300">
+                            <li>Engineered a full-stack MERN application that tracks **100+ contests** from 3 major competitive programming platforms, resulting in **30% increased user engagement**.</li>
+                            <li>Developed **15+ RESTful API endpoints** with Express.js, optimizing data access efficiency by **40%** for seamless user experience.</li>
+                            <li>Optimized MongoDB database with indexing strategies, reducing query execution time by **65%** and API response times to **400ms**.</li>
+                            <li>Designed a fully **responsive UI** using TailwindCSS, reducing page load time by **45%** across various screen sizes.</li>
                         </ul>
                         <div class="mt-4">
-                            <a href="https://github.com/Shilpa805/CONTEST-TRACKER-APP" target="_blank" class="text-sm font-medium text-teal-400 hover:text-teal-300">View on GitHub →</a>
+                            <a href="https://github.com/Shilpa805/CONTEST-TRACKER-APP" target="_blank" class="text-sm font-medium text-emerald-400 hover:text-emerald-300">View on GitHub →</a>
                         </div>
                     </div>
 
                     <!-- Project 2: Social Link -->
                     <div class="project-card bg-gray-800 p-6 rounded-xl shadow-2xl border border-gray-700">
-                        <h3 class="text-3xl font-bold text-teal-400 mb-2">Social Link (Real-Time Chat)</h3>
+                        <h3 class="text-3xl font-bold text-emerald-400 mb-2">Social Link (Real-Time Chat)</h3>
                         <!-- Tech Tags -->
                         <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-3 py-1 bg-teal-600/20 text-teal-400 text-xs font-medium rounded-full">React</span>
-                            <span class="px-3 py-1 bg-teal-600/20 text-teal-400 text-xs font-medium rounded-full">Node.js</span>
-                            <span class="px-3 py-1 bg-teal-600/20 text-teal-400 text-xs font-medium rounded-full">MongoDB</span>
-                            <span class="px-3 py-1 bg-teal-600/20 text-teal-400 text-xs font-medium rounded-full">Express</span>
-                            <span class="px-3 py-1 bg-teal-600/20 text-teal-400 text-xs font-medium rounded-full">Socket.io</span>
-                            <span class="px-3 py-1 bg-teal-600/20 text-teal-400 text-xs font-medium rounded-full">Cloudinary</span>
+                            <span class="px-3 py-1 bg-emerald-600/20 text-emerald-400 text-xs font-medium rounded-full">React</span>
+                            <span class="px-3 py-1 bg-emerald-600/20 text-emerald-400 text-xs font-medium rounded-full">Node.js</span>
+                            <span class="px-3 py-1 bg-emerald-600/20 text-emerald-400 text-xs font-medium rounded-full">MongoDB</span>
+                            <span class="px-3 py-1 bg-emerald-600/20 text-emerald-400 text-xs font-medium rounded-full">Express</span>
+                            <span class="px-3 py-1 bg-emerald-600/20 text-emerald-400 text-xs font-medium rounded-full">Socket.io</span>
+                            <span class="px-3 py-1 bg-emerald-600/20 text-emerald-400 text-xs font-medium rounded-full">Cloudinary</span>
                         </div>
-                        <ul class="list-disc list-outside space-y-3 pl-5 text-gray-300">
-                            <li class="project-list-item">Designed and implemented a full-stack real-time chat application using the MERN stack with a responsive UI built on React and Tailwind CSS.</li>
-                            <li class="project-list-item">Implemented **Socket.io** for efficient, real-time communication, ensuring optimized cross-domain operations (CORS configuration).</li>
-                            <li class="project-list-item">Secured APIs with **JWT authentication** using HTTP-only cookies.</li>
-                            <li class="project-list-item">Integrated **Cloudinary** for image uploads and storage, enabling seamless media sharing.</li>
+                        <ul class="list-disc list-outside space-y-4 pl-5 text-gray-300">
+                            <li>Designed and implemented a full-stack real-time chat application using the MERN stack with a responsive UI built on React and Tailwind CSS.</li>
+                            <li>Implemented **Socket.io** for efficient, real-time communication, ensuring optimized cross-domain operations (CORS configuration).</li>
+                            <li>Secured APIs with **JWT authentication** using HTTP-only cookies.</li>
+                            <li>Integrated **Cloudinary** for image uploads and storage, enabling seamless media sharing.</li>
                         </ul>
                         <div class="mt-4">
-                            <a href="https://github.com/Shilpa805/SociaLink" target="_blank" class="text-sm font-medium text-teal-400 hover:text-teal-300">View on GitHub →</a>
+                            <a href="https://github.com/Shilpa805/SociaLink" target="_blank" class="text-sm font-medium text-emerald-400 hover:text-emerald-300">View on GitHub →</a>
                         </div>
                     </div>
                 </div>
@@ -180,27 +239,27 @@
             <!-- --- -->
 
             <!-- Achievements Section -->
-            <section id="achievements" class="py-16">
+            <section id="achievements" class="py-16 animate-scroll">
                 <h2 class="section-header">Achievements & Coding</h2>
                 <div class="space-y-4">
                     <div class="flex items-start space-x-3 p-4 bg-gray-800 rounded-lg shadow-lg">
-                        <span class="text-teal-400 text-2xl">★</span>
+                        <span class="text-emerald-400 text-2xl">★</span>
                         <div>
-                            <p class="font-semibold text-xl text-gray-100">Competitive Programming</p>
+                            <p class="font-semibold text-xl text-white">Competitive Programming</p>
                             <p class="text-gray-400">Solved **500+ coding questions** across LeetCode, GeeksforGeeks, and HackerRank (2-star coder), enhancing problem-solving skills and data structure knowledge.</p>
                         </div>
                     </div>
                     <div class="flex items-start space-x-3 p-4 bg-gray-800 rounded-lg shadow-lg">
-                        <span class="text-teal-400 text-2xl">🏆</span>
+                        <span class="text-emerald-400 text-2xl">🏆</span>
                         <div>
-                            <p class="font-semibold text-xl text-gray-100">Hackathon Success</p>
+                            <p class="font-semibold text-xl text-white">Hackathon Success</p>
                             <p class="text-gray-400">Contributed to a team in the **Flipkart Hackathon** and was selected for the 2nd and 3rd rounds from Unstop.</p>
                         </div>
                     </div>
                     <div class="flex items-start space-x-3 p-4 bg-gray-800 rounded-lg shadow-lg">
-                        <span class="text-teal-400 text-2xl">🎓</span>
+                        <span class="text-emerald-400 text-2xl">🎓</span>
                         <div>
-                            <p class="font-semibold text-xl text-gray-100">MERN Stack Training</p>
+                            <p class="font-semibold text-xl text-white">MERN Stack Training</p>
                             <p class="text-gray-400">Completed 84+ hours of intensive MERN Stack Development Training from CipherSchools, culminating in a responsive Notes application project.</p>
                         </div>
                     </div>
@@ -210,13 +269,13 @@
             <!-- --- -->
 
             <!-- Resume/CV Section -->
-            <section id="resume" class="py-16">
+            <section id="resume" class="py-16 animate-scroll">
                 <h2 class="section-header">Resume</h2>
                 <div class="p-6 bg-gray-800 rounded-xl shadow-2xl border border-gray-700 flex flex-col sm:flex-row items-center justify-between space-y-4 sm:space-y-0">
                     <p class="text-lg text-gray-300 max-w-lg">
                         Download my full curriculum vitae for a detailed look at my education, skills, and professional experience.
                     </p>
-                    <a href="https://raw.githubusercontent.com/Shilpa805/shilpa-portfolio/main/12211870FINAL.pdf" download="Shilpa_Kumari_CV.pdf" target="_blank" class="inline-flex items-center bg-teal-600 hover:bg-teal-700 text-white font-semibold py-3 px-6 rounded-full transition duration-300 shadow-xl">
+                    <a href="https://raw.githubusercontent.com/Shilpa805/shilpa-portfolio/main/12211870FINAL.pdf" download="Shilpa_Kumari_CV.pdf" target="_blank" class="inline-flex items-center bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3 px-6 rounded-full transition duration-300 shadow-xl">
                         <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
                         Download CV (PDF)
                     </a>
@@ -226,17 +285,17 @@
             <!-- --- -->
 
             <!-- Contact & Education Section -->
-            <section id="contact" class="py-16">
+            <section id="contact" class="py-16 animate-scroll">
                 <h2 class="section-header">Contact & Education</h2>
                 <div class="grid md:grid-cols-2 gap-8">
                     
                     <!-- Contact Information -->
                     <div class="space-y-4">
                         <h3 class="text-2xl font-semibold text-white mb-4 border-b border-gray-700 pb-2">Get in Touch</h3>
-                        <p class="text-gray-300"><span class="font-medium text-teal-400">Email:</span> <a href="mailto:shilpaak805@gmail.com" class="hover:text-teal-300 transition">shilpaak805@gmail.com</a></p>
-                        <p class="text-gray-300"><span class="font-medium text-teal-400">Mobile:</span> +91-9316220198</p>
-                        <p class="text-gray-300"><span class="font-medium text-teal-400">LinkedIn:</span> <a href="https://www.linkedin.com/in/shilpa-kumari08/" target="_blank" class="hover:text-teal-300 transition">/in/shilpa-kumari08/</a></p>
-                        <p class="text-3gray-300"><span class="font-medium text-teal-400">GitHub:</span> <a href="https://github.com/Shilpa805/" target="_blank" class="hover:text-teal-300 transition">/Shilpa805/</a></p>
+                        <p class="text-gray-300"><span class="font-medium text-emerald-400">Email:</span> <a href="mailto:shilpaak805@gmail.com" class="hover:text-emerald-300 transition">shilpaak805@gmail.com</a></p>
+                        <p class="text-gray-300"><span class="font-medium text-emerald-400">Mobile:</span> +91-9316220198</p>
+                        <p class="text-gray-300"><span class="font-medium text-emerald-400">LinkedIn:</span> <a href="https://www.linkedin.com/in/shilpa-kumari08/" target="_blank" class="hover:text-emerald-300 transition">/in/shilpa-kumari08/</a></p>
+                        <p class="text-3gray-300"><span class="font-medium text-emerald-400">GitHub:</span> <a href="https://github.com/Shilpa805/" target="_blank" class="hover:text-emerald-300 transition">/Shilpa805/</a></p>
                     </div>
 
                     <!-- Education -->
@@ -244,12 +303,12 @@
                         <h3 class="text-2xl font-semibold text-white mb-4 border-b border-gray-700 pb-2">Education</h3>
                         <div class="p-4 bg-gray-800 rounded-lg">
                             <p class="text-xl font-medium text-white">B.Tech. Computer Science & Engineering</p>
-                            <p class="text-teal-400">Lovely Professional University, Punjab, India</p>
+                            <p class="text-emerald-400">Lovely Professional University, Punjab, India</p>
                             <p class="text-sm text-gray-400">Since Aug 2020 | CGPA: 7.47</p>
                         </div>
                         <div class="p-4 bg-gray-800 rounded-lg">
                             <p class="text-xl font-medium text-white">Intermediate (88.8%)</p>
-                            <p class="text-teal-400">Kendriya Vidyalaya Nol School, Pathankot</p>
+                            <p class="text-emerald-400">Kendriya Vidyalaya Nol School, Pathankot</p>
                             <p class="text-sm text-gray-400">Aug 2020 - Apr 2021</p>
                         </div>
                     </div>
@@ -257,7 +316,7 @@
             </section>
 
             <!-- Footer -->
-            <footer class="mt-16 pt-8 border-t border-gray-800 text-center text-gray-500 text-sm">
+            <footer class="mt-16 pt-8 border-t border-gray-800 animate-scroll text-center text-gray-500 text-sm">
                 <p>&copy; 2025 Shilpa Kumari. Built with Tailwind CSS.</p>
             </footer>
 
@@ -265,25 +324,55 @@
     </div>
 
     <script>
-        // JavaScript for mobile menu functionality
+        // --- PRE-LOADER SCRIPT ---
+        window.addEventListener('load', () => {
+            const preloader = document.getElementById('preloader');
+            if (preloader) {
+                setTimeout(() => {
+                    preloader.classList.add('preloader-hidden');
+                }, 500); // Wait 0.5 seconds before fading out
+            }
+        });
+
+        // --- MOBILE NAV SCRIPT ---
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const sidebarNav = document.getElementById('sidebar-nav');
         
-        // Function to toggle the mobile sidebar
         function toggleMobileMenu() {
             sidebarNav.classList.toggle('-translate-x-full');
         }
 
         mobileMenuButton.addEventListener('click', toggleMobileMenu);
 
-        // Close the sidebar when a navigation link is clicked on mobile
         sidebarNav.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
-                // Check if the sidebar is currently open (not fully translated)
                 if (!sidebarNav.classList.contains('-translate-x-full')) {
                     toggleMobileMenu();
                 }
             });
+        });
+
+        // --- SCROLL ANIMATION SCRIPT (Intersection Observer) ---
+        // Observer options: Trigger when 10% of the element is visible
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    // Stop observing once visible to prevent re-triggering
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Target all sections and the footer for the animation
+        document.querySelectorAll('.animate-scroll').forEach(section => {
+            observer.observe(section);
         });
 
     </script>
