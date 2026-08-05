@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://krishna-nishant.vercel.app/sitemap.xml 
