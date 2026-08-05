@@ -174,7 +174,7 @@ export default function ContactSection() {
                   <input
                     type="text"
                     required
-                    placeholder="Jane Doe"
+                    placeholder="Your Name"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     className="w-full p-4 rounded-2xl bg-white/5 border border-white/10 text-white placeholder-zinc-500 text-sm focus:outline-none focus:border-sky-400 transition-colors"
@@ -186,7 +186,7 @@ export default function ContactSection() {
                   <input
                     type="email"
                     required
-                    placeholder="jane@example.com"
+                    placeholder="youremail@gmail.com"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     className="w-full p-4 rounded-2xl bg-white/5 border border-white/10 text-white placeholder-zinc-500 text-sm focus:outline-none focus:border-sky-400 transition-colors"

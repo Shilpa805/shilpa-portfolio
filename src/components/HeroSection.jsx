@@ -17,11 +17,6 @@ export default function HeroSection() {
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="lg:col-span-7 flex flex-col items-start space-y-6 text-left"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-panel border border-sky-500/20 text-xs font-semibold text-sky-300 shadow-lg">
-            <Award className="w-4 h-4 text-amber-400 animate-pulse" />
-            <span>{PERSONAL_INFO.tcsBadge}</span>
-          </div>
-
           <div className="flex items-center gap-2 text-zinc-400 font-mono text-sm tracking-wider uppercase">
             <Sparkles className="w-4 h-4 text-sky-400" />
             <span>Hi, I'm</span>
