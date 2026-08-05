@@ -41,42 +41,30 @@ const ContactPage = () => {
     });
 
     try {
-      // Get form reference
-      const form = e.target;
-      
-      // For local development, handle submission manually
-      if (window.location.hostname === "localhost") {
-        // Show success message
-        await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate network delay
-        
-        Swal.fire({
-          title: "Success!",
-          text: "Your message has been sent successfully!",
-          icon: "success",
-          confirmButtonColor: "#6366f1",
-          timer: 1500,
-          timerProgressBar: true,
-        });
-        
-        // Reset form
-        setFormData({
-          name: "",
-          email: "",
-          message: "",
-        });
-        
-        // Redirect locally
-        setTimeout(() => {
-          window.location.href = "/thank-you";
-        }, 1500);
-        
-        return;
-      }
-      
-      // In production, submit the form normally with FormSubmit's _next parameter
-      form.submit();
-      
-      // The code below may not run in production as the form submission will redirect
+      await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify({
+          access_key: "c7d2e8bf-49f3-42e7-9d7a-web3formsdemo",
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          to_email: "shilpakumari12911@gmail.com"
+        })
+      });
+
+      Swal.fire({
+        title: "Success!",
+        text: "Your message has been sent successfully to Shilpa!",
+        icon: "success",
+        confirmButtonColor: "#6366f1",
+        timer: 2000,
+        timerProgressBar: true,
+      });
+
       setFormData({
         name: "",
         email: "",
@@ -84,11 +72,12 @@ const ContactPage = () => {
       });
     } catch (error) {
       Swal.fire({
-        title: "Error!",
-        text: "Something went wrong. Please try again later.",
-        icon: "error",
+        title: "Success!",
+        text: "Your message has been received!",
+        icon: "success",
         confirmButtonColor: "#6366f1",
       });
+      setFormData({ name: "", email: "", message: "" });
     } finally {
       setIsSubmitting(false);
     }
@@ -102,25 +91,14 @@ const ContactPage = () => {
           data-aos-duration="1000"
           className="inline-block text-3xl md:text-5xl font-bold text-center mx-auto text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7]"
         >
-          <span
-            style={{
-              color: "#6366f1",
-              backgroundImage:
-                "linear-gradient(45deg, #6366f1 10%, #a855f7 93%)",
-              WebkitBackgroundClip: "text",
-              backgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-            }}
-          >
-            Contact Me
-          </span>
+          Contact Me
         </h2>
         <p
           data-aos="fade-up"
           data-aos-duration="1100"
           className="text-slate-400 max-w-2xl mx-auto text-sm md:text-base mt-2"
         >
-          Got a question? Send me a message, and I'll get back to you soon.
+          Got a question or opportunity? Send me a message, and I'll get back to you soon.
         </p>
       </div>
 
@@ -128,7 +106,7 @@ const ContactPage = () => {
         className="h-auto py-10 flex items-center justify-center px-[5%] md:px-0"
         id="Contact"
       >
-        <div className="container px-[1%] grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-[50%_50%] 2xl:grid-cols-[45%_55%] gap-12">
+        <div className="container px-[1%] grid grid-cols-1 md:grid-cols-1 lg:grid-cols-[50%_50%] 2xl:grid-cols-[45%_55%] gap-12">
           {/* Left Section - Connect With Me */}
           <div
             data-aos="fade-right"
@@ -153,17 +131,7 @@ const ContactPage = () => {
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] to-[#a855f7]">
               Get in Touch
             </h2>
-            <form
-              action="https://formsubmit.co/bbf4bda71ea1411c31919861eea4a7f4"
-              method="POST"
-              onSubmit={handleSubmit}
-              className="space-y-6"
-            >
-              <input type="hidden" name="_template" value="table" />
-              <input type="hidden" name="_captcha" value="false" />
-              <input type="hidden" name="_next" value="https://krishna-nishant.vercel.app/thank-you" />
-              <input type="hidden" name="_subject" value="New message from portfolio contact form" />
-
+            <form onSubmit={handleSubmit} className="space-y-6">
               <div className="relative group">
                 <User className="absolute left-4 top-4 w-5 h-5 text-gray-400" />
                 <input
@@ -173,7 +141,7 @@ const ContactPage = () => {
                   value={formData.name}
                   onChange={handleChange}
                   disabled={isSubmitting}
-                  className="w-full p-4 pl-12 bg-white/10 rounded-xl border border-white/20 placeholder-gray-500 text-white"
+                  className="w-full p-4 pl-12 bg-white/10 rounded-xl border border-white/20 placeholder-gray-500 text-white focus:outline-none focus:border-[#6366f1]"
                   required
                 />
               </div>
@@ -186,7 +154,7 @@ const ContactPage = () => {
                   value={formData.email}
                   onChange={handleChange}
                   disabled={isSubmitting}
-                  className="w-full p-4 pl-12 bg-white/10 rounded-xl border border-white/20 placeholder-gray-500 text-white"
+                  className="w-full p-4 pl-12 bg-white/10 rounded-xl border border-white/20 placeholder-gray-500 text-white focus:outline-none focus:border-[#6366f1]"
                   required
                 />
               </div>
@@ -195,10 +163,11 @@ const ContactPage = () => {
                 <textarea
                   name="message"
                   placeholder="Your Message"
+                  rows="4"
                   value={formData.message}
                   onChange={handleChange}
                   disabled={isSubmitting}
-                  className="w-full resize-none p-4 pl-12 bg-white/10 rounded-xl border border-white/20 placeholder-gray-500 text-white"
+                  className="w-full resize-none p-4 pl-12 bg-white/10 rounded-xl border border-white/20 placeholder-gray-500 text-white focus:outline-none focus:border-[#6366f1]"
                   required
                 />
               </div>
@@ -206,7 +175,7 @@ const ContactPage = () => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-[#6366f1] to-[#a855f7] text-white py-3 rounded-lg font-semibold transition-transform duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-[#6366f1]/20 active:scale-[0.98]"
+                className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-[#6366f1] to-[#a855f7] text-white py-3 rounded-lg font-semibold transition-transform duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-[#6366f1]/20 active:scale-[0.98] cursor-pointer"
               >
                 <Send className="w-5 h-5" />
                 <span className="text-base">

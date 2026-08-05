@@ -1,78 +1,59 @@
 import {
   Linkedin,
   Github,
-  Instagram,
+  Mail,
   Code,
-  Twitter,
   ExternalLink,
 } from "lucide-react";
 
 const socialLinks = [
   {
     name: "LinkedIn",
-    displayName: "Let's Connect",
-    subText: "on LinkedIn",
+    displayName: "LinkedIn Profile",
+    subText: "@shilpa-kumari08",
     icon: Linkedin,
-    url: "https://www.linkedin.com/in/krishna-nishant",
+    url: "https://www.linkedin.com/in/shilpa-kumari08/",
     color: "#0A66C2",
     gradient: "from-[#0A66C2] to-[#0077B5]",
   },
   {
     name: "GitHub",
-    displayName: "GitHub",
-    subText: "@krishna-nishant",
+    displayName: "GitHub Profile",
+    subText: "@Shilpa805",
     icon: Github,
-    url: "https://github.com/krishna-nishant",
+    url: "https://github.com/Shilpa805/",
     color: "#333",
     gradient: "from-[#333] to-[#24292e]",
   },
   {
-    name: "Instagram",
-    displayName: "Instagram",
-    subText: "@krishna_0795_",
-    icon: Instagram,
-    url: "https://www.instagram.com/krishna_0795_",
-    color: "#E4405F",
-    gradient: "from-[#833AB4] via-[#E4405F] to-[#FCAF45]",
-  },
-  {
-    name: "Twitter",
-    displayName: "X / Twitter",
-    subText: "@krishna_0795",
-    icon: Twitter,
-    url: "https://x.com/krishna_0795",
-    color: "#1DA1F2",
-    gradient: "from-[#1DA1F2] to-[#0D8ECF]",
+    name: "Email",
+    displayName: "Direct Email",
+    subText: "shilpakumari12911@gmail.com",
+    icon: Mail,
+    url: "mailto:shilpakumari12911@gmail.com",
+    color: "#EA4335",
+    gradient: "from-[#EA4335] to-[#C5221F]",
   },
   {
     name: "LeetCode",
-    displayName: "LeetCode",
-    subText: "Coding Profile",
+    displayName: "DSA & Coding",
+    subText: "500+ Solved",
     icon: Code,
-    url: "https://leetcode.com/krishna-nishant",
+    url: "https://github.com/Shilpa805/",
     color: "#FFA116",
     gradient: "from-[#FFA116] to-[#FFCC00]",
-  },
-  {
-    name: "GeeksforGeeks",
-    displayName: "GFG",
-    subText: "Coding Profile",
-    icon: Code,
-    url: "https://auth.geeksforgeeks.org/user/krishna_0795",
-    color: "#2F8D46",
-    gradient: "from-[#2F8D46] to-[#1F5F30]",
   },
 ];
 
 const SocialLinks = () => {
   return (
     <div className="w-full bg-gradient-to-br from-white/10 to-white/5 rounded-2xl p-6 py-8 backdrop-blur-xl">
-      <h3 className="text-xl font-semibold text-white mb-6 flex items-center gap-2">
+      <h3 className="text-xl font-semibold text-white mb-6 flex items-center gap-2 justify-center">
         <span className="inline-block w-8 h-1 bg-indigo-500 rounded-full"></span>
-        My Profiles
+        Connect With Shilpa
       </h3>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {socialLinks.map((link) => (
           <a
             key={link.name}
@@ -103,7 +84,7 @@ const SocialLinks = () => {
             </div>
 
             {/* Text Container */}
-            <div className="flex flex-col min-w-0">
+            <div className="flex flex-col min-w-0 text-left">
               <span className="text-sm font-bold text-gray-200 group-hover:text-white transition-colors duration-300">
                 {link.displayName}
               </span>

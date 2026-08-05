@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import data from "../data.json"; // Import data.json
+import data from "../data.json";
 import PropTypes from "prop-types";
-import SwipeableViews from "react-swipeable-views";
 import { useTheme } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Tabs from "@mui/material/Tabs";
@@ -51,7 +50,7 @@ function TabPanel({ children, value, index, ...other }) {
     <div role="tabpanel" hidden={value !== index} {...other}>
       {value === index && (
         <Box sx={{ p: { xs: 1, sm: 3 } }}>
-          <Typography>{children}</Typography>
+          <Typography component="div">{children}</Typography>
         </Box>
       )}
     </div>
@@ -73,10 +72,10 @@ function a11yProps(index) {
 
 // Tech Stack
 const techStacks = [
-  { icon: "/logo/reactjs.svg", language: "ReactJS" },
-  { icon: "/logo/nodejs.svg", language: "Node JS" },
-  { icon: "/logo/MongoDB.svg", language: "Mongo DB" },
-  { icon: "/logo/Express.svg", language: "Express JS" },
+  { icon: "/logo/reactjs.svg", language: "React.js" },
+  { icon: "/logo/nodejs.svg", language: "Node.js" },
+  { icon: "/logo/MongoDB.svg", language: "MongoDB" },
+  { icon: "/logo/Express.svg", language: "Express.js" },
   { icon: "/logo/tailwind.svg", language: "Tailwind CSS" },
   { icon: "/logo/javascript.svg", language: "JavaScript" },
   { icon: "/logo/cpp.svg", language: "C++" },
@@ -100,7 +99,6 @@ const tools = [
   { icon: "/logo/chatgpt.svg", name: "ChatGPT" },
   { icon: "/logo/shadcn.svg", name: "Shadcn" },
   { icon: "/logo/MUI.svg", name: "Material UI" },
-  { icon: "/logo/canva.svg", name: "Canva" },
 ];
 
 export default function FullWidthTabs() {
@@ -147,7 +145,6 @@ export default function FullWidthTabs() {
       </div>
 
       <Box sx={{ width: "100%" }}>
-        {/* Tabs with original styling */}
         <AppBar position="static" elevation={0} sx={{ bgcolor: "transparent" }}>
           <Tabs
             value={value}
@@ -198,13 +195,9 @@ export default function FullWidthTabs() {
           </Tabs>
         </AppBar>
 
-        <SwipeableViews
-          axis={theme.direction === "rtl" ? "x-reverse" : "x"}
-          index={value}
-          onChangeIndex={setValue}
-        >
+        <div>
           {/* Projects Tab */}
-          <TabPanel value={value} index={0} dir={theme.direction}>
+          <TabPanel value={value} index={0}>
             <div className="container mx-auto flex justify-center items-center overflow-hidden">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 2xl:grid-cols-3 gap-5">
                 {displayedProjects.map((project, index) => (
@@ -229,7 +222,7 @@ export default function FullWidthTabs() {
           </TabPanel>
 
           {/* Tech Stack Tab */}
-          <TabPanel value={value} index={1} dir={theme.direction}>
+          <TabPanel value={value} index={1}>
             <div className="container mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-5">
               {techStacks.map((stack, index) => (
                 <div
@@ -247,7 +240,7 @@ export default function FullWidthTabs() {
           </TabPanel>
 
           {/* Tools Tab */}
-          <TabPanel value={value} index={2} dir={theme.direction}>
+          <TabPanel value={value} index={2}>
             <div className="container mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-5">
               {tools.map((tool, index) => (
                 <div
@@ -264,7 +257,7 @@ export default function FullWidthTabs() {
               ))}
             </div>
           </TabPanel>
-        </SwipeableViews>
+        </div>
       </Box>
     </div>
   );

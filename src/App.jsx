@@ -32,16 +32,16 @@ const LandingPage = ({ showWelcome, setShowWelcome }) => {
           <About />
           <Portfolio />
           <ContactPage />
-          <footer className="py-6">
+          <footer className="py-6 bg-[#030014]">
             <div className="container mx-auto px-4">
               <hr className="my-3 border-gray-400 opacity-15" />
-              <span className="block text-sm text-gray-500 text-center">
+              <span className="block text-sm text-gray-400 text-center font-mono">
                 Made with ❤️ by{" "}
                 <a
-                  href="https://krishna-nishant.vercel.app/"
-                  className="hover:underline"
+                  href="https://shilpabytes.vercel.app/"
+                  className="hover:underline text-indigo-400 font-semibold"
                 >
-                  Krishna
+                  Shilpa Kumari
                 </a>
               </span>
             </div>
@@ -55,16 +55,16 @@ const LandingPage = ({ showWelcome, setShowWelcome }) => {
 const ProjectPageLayout = () => (
   <>
     <ProjectDetails />
-    <footer className="py-6">
+    <footer className="py-6 bg-[#030014]">
       <div className="container mx-auto px-4">
         <hr className="my-3 border-gray-400 opacity-15" />
-        <span className="block text-sm text-gray-500 text-center">
+        <span className="block text-sm text-gray-400 text-center font-mono">
           Made with ❤️ by{" "}
           <a
-            href="https://krishna-nishant.vercel.app/"
-            className="hover:underline"
+            href="https://shilpabytes.vercel.app/"
+            className="hover:underline text-indigo-400 font-semibold"
           >
-            Krishna
+            Shilpa Kumari
           </a>
         </span>
       </div>

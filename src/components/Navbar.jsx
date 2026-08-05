@@ -77,12 +77,12 @@ const Navbar = () => {
           isOpen
             ? "bg-[#030014] opacity-100"
             : scrolled
-            ? "bg-[#030014]/50 backdrop-blur-xl"
+            ? "bg-[#030014]/50 backdrop-blur-xl border-b border-white/10"
             : "bg-transparent"
         }`}
       >
         <div className="mx-auto px-4 sm:px-6 lg:px-[10%]">
-          <div className="flex items-center justify-between h-16">
+          <div className="flex items-center justify-between h-16 sm:h-20">
             {/* Logo */}
             <div className="flex-shrink-0">
               <a
@@ -90,7 +90,7 @@ const Navbar = () => {
                 onClick={(e) => scrollToSection(e, "#Home")}
                 className="text-xl font-bold bg-gradient-to-r from-[#a855f7] to-[#6366f1] bg-clip-text text-transparent"
               >
-                Krishna
+                Shilpa
               </a>
             </div>
 
@@ -126,7 +126,7 @@ const Navbar = () => {
                 {/* Share Button */}
                 <button
                   onClick={() => setIsShareModalOpen(true)}
-                  className="group flex items-center space-x-1 px-3 py-1.5 bg-gradient-to-r from-blue-600/20 to-purple-600/20 rounded-full hover:from-blue-600/30 hover:to-purple-600/30 text-white/90 transition-all duration-300 border border-white/10 hover:border-white/20"
+                  className="group flex items-center space-x-1 px-3 py-1.5 bg-gradient-to-r from-blue-600/20 to-purple-600/20 rounded-full hover:from-blue-600/30 hover:to-purple-600/30 text-white/90 transition-all duration-300 border border-white/10 hover:border-white/20 cursor-pointer"
                 >
                   <Share2 className="w-4 h-4 text-white/80 group-hover:text-white" />
                   <span className="text-sm">Share</span>
@@ -136,7 +136,6 @@ const Navbar = () => {
 
             {/* Mobile Menu Button */}
             <div className="flex items-center md:hidden">
-              {/* Share Button (Mobile) */}
               <button
                 onClick={() => setIsShareModalOpen(true)}
                 className="mr-2 p-2 text-[#e2d3fd] hover:text-white"
@@ -170,7 +169,7 @@ const Navbar = () => {
           style={{ top: "64px" }}
         >
           <div className="flex flex-col h-full">
-            <div className="px-4 py-6 space-y-4 flex-1 ">
+            <div className="px-4 py-6 space-y-4 flex-1">
               {navItems.map((item, index) => (
                 <a
                   key={item.label}
@@ -195,7 +194,6 @@ const Navbar = () => {
         </div>
       </nav>
 
-      {/* Share Modal */}
       <ShareModal
         isOpen={isShareModalOpen}
         onClose={() => setIsShareModalOpen(false)}

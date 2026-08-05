@@ -1,7 +1,8 @@
 import React, { useEffect, memo } from "react";
-import { FileText, Code, Sparkles } from "lucide-react";
+import { FileText, Code, Sparkles, Award, GraduationCap, CheckCircle2 } from "lucide-react";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import shilpaImg from "../assets/shilpa.jpg";
 
 const Header = memo(() => (
   <div className="text-center lg:mb-8 mb-2 px-[5%]">
@@ -18,19 +19,20 @@ const Header = memo(() => (
       data-aos-duration="800"
     >
       <Sparkles className="w-5 h-5 text-purple-400" />
-      Transforming ideas into digital experiences
+      Transforming ideas into high-performance digital solutions
       <Sparkles className="w-5 h-5 text-purple-400" />
     </p>
   </div>
 ));
 
 const ProfileImage = memo(() => (
-  <div className="flex justify-end items-center sm:p-12 p-0 py-2">
+  <div className="flex justify-center lg:justify-end items-center p-2">
     <div className="relative group" data-aos="fade-up" data-aos-duration="1000">
-      <div className="relative w-72 h-72 sm:w-80 sm:h-80 rounded-full overflow-hidden shadow-lg">
+      <div className="absolute -inset-1 bg-gradient-to-r from-[#6366f1] to-[#a855f7] rounded-3xl blur-xl opacity-40 group-hover:opacity-70 transition duration-700"></div>
+      <div className="relative w-72 h-80 sm:w-80 sm:h-96 rounded-2xl overflow-hidden border border-white/20 shadow-2xl">
         <img
-          src="/logo/me.png"
-          alt="Profile"
+          src={shilpaImg}
+          alt="Shilpa Kumari"
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
           loading="lazy"
         />
@@ -46,7 +48,7 @@ const AboutPage = () => {
 
   return (
     <div
-      className="h-auto pb-[10%] text-white overflow-hidden px-[5%] sm:px-[5%] lg:px-[10%] mt-10 sm-mt-0"
+      className="h-auto pb-[10%] text-white overflow-hidden px-[5%] sm:px-[5%] lg:px-[10%] mt-10"
       id="About"
     >
       <Header />
@@ -67,41 +69,52 @@ const AboutPage = () => {
                 data-aos="fade-right"
                 data-aos-duration="1300"
               >
-                Krishna Nishant
+                Shilpa Kumari
               </span>
             </h2>
 
             <p
-              className="text-base sm:text-lg lg:text-xl text-gray-400 leading-relaxed text-justify pb-4 sm:pb-0"
+              className="text-base sm:text-lg text-gray-300 leading-relaxed text-justify"
               data-aos="fade-right"
               data-aos-duration="1500"
             >
-              A passionate Computer Science student specializing in Backend
-              Development. I focus on crafting seamless and interactive user
-              experiences with modern web technologies. Constantly learning and
-              improving, I strive to create clean, efficient, and innovative
-              solutions.
+              Computer Science student at <strong className="text-blue-300">Lovely Professional University (LPU)</strong> with a strong foundation in full-stack web development, database optimization, and competitive coding. Secured an offer from <strong className="text-amber-300">TCS for the Digital profile (₹7 LPA)</strong> and solved <strong className="text-purple-300">500+ DSA problem statements</strong> across LeetCode, GeeksforGeeks, and HackerRank.
             </p>
 
-            <div className="flex flex-col lg:flex-row items-center gap-4">
+            {/* Highlights */}
+            <div className="space-y-2 text-sm text-gray-300" data-aos="fade-right" data-aos-duration="1600">
+              <div className="flex items-center gap-2 justify-center lg:justify-start">
+                <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                <span>Web Development Intern @ <strong>Inglu Global</strong> (Jan'26 – Jun'26)</span>
+              </div>
+              <div className="flex items-center gap-2 justify-center lg:justify-start">
+                <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                <span>65% Database Query Speedup on <strong>Contest Tracker</strong></span>
+              </div>
+              <div className="flex items-center gap-2 justify-center lg:justify-start">
+                <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                <span>Merged PR #262 in <strong>NitroStack</strong> (577/577 tests passing)</span>
+              </div>
+            </div>
+
+            <div className="flex flex-col lg:flex-row items-center gap-4 pt-2">
               <a
-                href="https://tinyurl.com/krishnanishant"
+                href="#Contact"
                 className="w-full lg:w-auto"
-                target="_blank"
               >
                 <button
                   data-aos="fade-up"
                   data-aos-duration="800"
-                  className="w-full lg:w-auto px-6 py-3 rounded-lg bg-gradient-to-r from-[#6366f1] to-[#a855f7] text-white font-medium transition-all duration-300 hover:scale-105 flex items-center justify-center gap-2 shadow-lg"
+                  className="w-full lg:w-auto px-6 py-3 rounded-lg bg-gradient-to-r from-[#6366f1] to-[#a855f7] text-white font-medium transition-all duration-300 hover:scale-105 flex items-center justify-center gap-2 shadow-lg cursor-pointer"
                 >
-                  <FileText className="w-5 h-5" /> Download CV
+                  <FileText className="w-5 h-5" /> Get in Touch
                 </button>
               </a>
               <a href="#Portfolio" className="w-full lg:w-auto">
                 <button
                   data-aos="fade-up"
                   data-aos-duration="1000"
-                  className="w-full lg:w-auto px-6 py-3 rounded-lg border border-[#a855f7]/50 text-[#a855f7] font-medium transition-all duration-300 hover:scale-105 flex items-center justify-center gap-2 hover:bg-[#a855f7]/10"
+                  className="w-full lg:w-auto px-6 py-3 rounded-lg border border-[#a855f7]/50 text-[#a855f7] font-medium transition-all duration-300 hover:scale-105 flex items-center justify-center gap-2 hover:bg-[#a855f7]/10 cursor-pointer"
                 >
                   <Code className="w-5 h-5" /> View Projects
                 </button>
