@@ -113,10 +113,7 @@ export default function ContactSection() {
                 </div>
               </div>
 
-              <div className="space-y-1">
-                <span className="text-xs font-mono text-zinc-400 uppercase">Location</span>
-                <p className="text-sm font-medium text-white">{PERSONAL_INFO.location}</p>
-              </div>
+
             </div>
 
             <div className="pt-6 border-t border-white/10 space-y-3">
